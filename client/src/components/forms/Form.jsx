@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
@@ -20,20 +21,20 @@ const Form = ({
 }) => {
   const renderComponent = (getControlerItem) => {
     let element = null;
-    const value = formData[getControlerItem.name] || "";
-    switch (getControlerItem.componentType) {
+    const value = formData[getControlerItem?.name] || "";
+    switch (getControlerItem?.componentType) {
       case "input":
         element = (
           <Input
-            name={getControlerItem.name}
-            placeholder={getControlerItem.placeholder}
-            id={getControlerItem.name}
-            type={getControlerItem.type}
+            name={getControlerItem?.name}
+            placeholder={getControlerItem?.placeholder}
+            id={getControlerItem?.name}
+            type={getControlerItem?.type}
             value={value}
             onChange={(event) =>
               setFormData({
                 ...formData,
-                [getControlerItem.name]: event.target.value,
+                [getControlerItem?.name]: event?.target.value,
               })
             }
           />
@@ -46,18 +47,19 @@ const Form = ({
             onValueChange={(selectedValue) =>
               setFormData({
                 ...formData,
-                [getControlerItem.name]: selectedValue,
+                [getControlerItem?.name]: selectedValue,
               })
             }
           >
             <SelectTrigger className=" w-full">
-              <SelectValue placeholder={getControlerItem.placeholder} />
+              <SelectValue placeholder={getControlerItem?.placeholder} /> 
+              {/* label */}
             </SelectTrigger>
             <SelectContent>
-              {getControlerItem.options && getControlerItem.options.length > 0
-                ? getControlerItem.options.map((optionItem) => (
-                    <SelectItem key={optionItem.id} value={optionItem.id}>
-                      {optionItem.label}
+              {getControlerItem?.options && getControlerItem?.options.length > 0
+                ? getControlerItem?.options.map((optionItem) => (
+                    <SelectItem key={optionItem?.id} value={optionItem?.id}>
+                      {optionItem?.label}
                     </SelectItem>
                   ))
                 : null}
@@ -69,13 +71,13 @@ const Form = ({
         element = (
           <Textarea
             value={value}
-            placeholder={getControlerItem.placeholder}
-            name={getControlerItem.name}
-            id={getControlerItem.id}
+            placeholder={getControlerItem?.placeholder}
+            name={getControlerItem?.name}
+            id={getControlerItem?.id}
             onChange={(event) =>
               setFormData({
                 ...formData,
-                [getControlerItem.name]: event.target.value,
+                [getControlerItem?.name]: event?.target.value,
               })
             }
           />
@@ -84,15 +86,15 @@ const Form = ({
       default:
         element = (
           <Input
-            name={getControlerItem.name}
-            placeholder={getControlerItem.placeholder}
-            id={getControlerItem.name}
-            type={getControlerItem.type}
+            name={getControlerItem?.name}
+            placeholder={getControlerItem?.placeholder}
+            id={getControlerItem?.name}
+            type={getControlerItem?.type}
             value={value}
             onChange={(event) =>
               setFormData({
                 ...formData,
-                [getControlerItem.name]: event.target.value,
+                [getControlerItem?.name]: event?.target.value,
               })
             }
           />
@@ -105,9 +107,9 @@ const Form = ({
   return (
     <form onSubmit={onSubmit}>
       <div className="flex flex-col gap-3">
-        {formControls.map((controlItem) => (
-          <div className="grid w-full gap-2" key={controlItem.name}>
-            <Label className="mb-1">{controlItem.label}</Label>
+        {formControls?.map((controlItem) => (
+          <div className="grid w-full gap-2" key={controlItem?.name}>
+            <Label className="mb-1">{controlItem?.label}</Label>
             {renderComponent(controlItem)}
           </div>
         ))}

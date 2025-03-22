@@ -1,12 +1,12 @@
+import dotenv from "dotenv";
+dotenv.config();
 import cookieParser from "cookie-parser";
 import cors from "cors";
-import dotenv from "dotenv";
 import express from "express";
 import session from "express-session";
 import connectToDb from "./db/db.js";
 import userRouter from "./routes/user.routes.js";
-dotenv.config();
-
+import productRouter from "./routes/products.routes.js";
 
 const app = express();
 
@@ -47,6 +47,7 @@ app.get("/", (req, res) => {
   res.send("hello world");
 });
 app.use("/api/users", userRouter);
+app.use("/api/admin/products", productRouter);
 
 app.listen(process.env.PORT, () => {
   console.log(`Server is running on port ${process.env.PORT}`);
