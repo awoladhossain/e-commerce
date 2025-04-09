@@ -26,8 +26,11 @@ const AdminProducts = () => {
   const [formData, setFormData] = useState(initialFormData);
   const [imageFile, setImageFile] = useState(null);
   const [uploadedImgUrl, setUploadedImgUrl] = useState("");
+  const [imageLoadingState, setImageLoadingState] = useState(false);
+  // 4.20
 
   const onSubmit = () => {};
+  console.log("formdata", formData);
   return (
     <div>
       <div className="mb-5 w-full flex justify-end">
@@ -51,6 +54,7 @@ const AdminProducts = () => {
               setFile={setImageFile}
               uploadedImgUrl={uploadedImgUrl}
               setUploadedImgUrl={setUploadedImgUrl}
+              setImageLoadingState={setImageLoadingState}
             />
             <div className="py-6">
               <Form

@@ -9,7 +9,7 @@ import { useEffect, useRef } from "react";
 
 // 3.54
 
-const ImageUpload = ({ file, setFile, uploadedImgUrl, setUploadedImgUrl }) => {
+const ImageUpload = ({ file, setFile, uploadedImgUrl, setUploadedImgUrl,setImageLoadingState }) => {
   const inputRef = useRef(null);
   const handleChangeImageFile = (e) => {
     console.log(e.target.files);
@@ -37,6 +37,7 @@ const ImageUpload = ({ file, setFile, uploadedImgUrl, setUploadedImgUrl }) => {
     }
   };
   const uploadImageInCloudinary = async () => {
+    setImageLoadingState(true);
     if (!file) return;
     const data = new FormData();
     data.append("my_file", file);
@@ -50,7 +51,9 @@ const ImageUpload = ({ file, setFile, uploadedImgUrl, setUploadedImgUrl }) => {
       );
       // console.log("Response from server:", res.data.result.url);
       console.log(res.data.imageUrl);
+      console.log(res.data.imageId);
       setUploadedImgUrl(res.data.imageUrl);
+      setImageLoadingState(false);
     } catch (error) {
       console.error("Upload error:", error.response?.data || error.message);
     }

@@ -2,7 +2,9 @@ import { v2 as cloudinary } from "cloudinary";
 import multer from "multer";
 
 cloudinary.config({
-  
+  cloud_name: "dsun6tsg5",
+  api_key: "521964231315231",
+  api_secret: "jj1D68WCoc_EDbjFd_5tuBlmVXA",
   // secure: true,
 });
 
